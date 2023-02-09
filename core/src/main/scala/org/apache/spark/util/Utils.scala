@@ -3262,6 +3262,10 @@ private[spark] object Utils extends Logging {
       case _ => math.max(sortedSize(len / 2), 1)
     }
   }
+
+  def isRssEnabled(conf: SparkConf): Boolean =
+   conf.get("spark.shuffle.manager", "sort") == "org.apache.spark.shuffle.celeborn.RssShuffleManager"
+
 }
 
 private[util] object CallerContext extends Logging {

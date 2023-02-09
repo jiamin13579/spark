@@ -209,7 +209,7 @@ private[spark] class ExecutorAllocationManager(
       } else if (decommissionEnabled &&
           conf.get(config.STORAGE_DECOMMISSION_SHUFFLE_BLOCKS_ENABLED)) {
         logInfo("Shuffle data decommission is enabled without a shuffle service.")
-      } else if (!testing) {
+      } else if (!testing && !Utils.isRssEnabled(conf)) {
         throw new SparkException("Dynamic allocation of executors requires the external " +
           "shuffle service. You may enable this through spark.shuffle.service.enabled.")
       }
