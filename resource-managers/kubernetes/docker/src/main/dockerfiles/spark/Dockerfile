@@ -29,6 +29,8 @@ ARG spark_uid=185
 
 RUN set -ex && \
     sed -i 's/http:\/\/deb.\(.*\)/https:\/\/deb.\1/g' /etc/apt/sources.list && \
+    sed -i 's@/archive.ubuntu.com/@/mirrors.aliyun.com/@g' /etc/apt/sources.list && \
+    sed -i 's@/deb.debian.org/@/mirrors.aliyun.com/@g' /etc/apt/sources.list && \
     apt-get update && \
     ln -s /lib /lib64 && \
     apt install -y bash tini libc6 libpam-modules krb5-user libnss3 procps && \
